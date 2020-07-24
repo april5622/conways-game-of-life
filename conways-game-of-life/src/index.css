@@ -1,1 +1,27 @@
+body {
+  background-color: #F0D2D1;
+}
+  
+h1, h2, h3, h4 {
+  color:black;
+  margin: auto;
+  text-align: center;
+  width: 50%;
+  margin-top: 10px;
+  font-family: 'Press Start 2P', cursive;
+}
 
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+h4 {
+  margin-top: 0px;
+}
+
+.btn {
+  background-color: #42CAFD;
+  border: 1px solid black;
+  margin: 5px;
+}

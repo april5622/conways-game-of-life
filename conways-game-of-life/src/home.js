@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Grid from './grid';
+import Buttons from './buttons'
 //import Box from './box';
 import './index.css';
 
@@ -17,21 +18,31 @@ export default class home extends Component {
                 Array(this.columns).fill(false) // false because every grid cell is off
             )
         }
-    }
+    } // constructor
+
 
     render() {
         return (
             <div>
                 <h1>The Game of Life</h1>
+                <Buttons
+                    startButton={this.startButton}
+                    stopButton={this.stopButton}
+                    clearButton={this.clearButton}
+                    random={this.random}
+                />
                 <Grid 
-                    gridFull = {this.state.gridFull} // these are passed as props 
-                    rows = {this.rows}              // so we can use in grid component
-                    columns = {this.columns}
-                    selectBox={this.selectBox}
                 />
                 <h2>Generations: {this.state.generation}</h2>
+
+                <h3>About</h3>
+                <h3>Rules:</h3>
             </div>
         )
     }
+}
+
+function arrayClone(arr) {
+	return JSON.parse(JSON.stringify(arr));
 }
 

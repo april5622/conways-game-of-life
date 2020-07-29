@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Grid from './grid';
 import Buttons from './buttons'
 import './index.css';
@@ -17,13 +17,14 @@ const directions = [
 
 function Home(){
     const [speed, setSpeed] = useState(100);
-    const [rows, setRows] = useState(30);
-    const [columns, setColumns] = useState(50)
+    const [rows, setRows] = useState(50);
+    const [columns, setColumns] = useState(70)
     const [generation, setGeneration] = useState(0);
     const [gridFull, setGridFull] = useState(
         Array(rows).fill().map(() =>  // creating an array as big as rows var and fill that with map
         Array(columns).fill(false) // where an inner array of columns var. false because every grid cell is off
     ));
+    
 
     const selectCell = (row, column) => {
         let gridCopy = arrayClone(gridFull); // not updating the state, rather a copy of it
@@ -82,7 +83,26 @@ function Home(){
         setGeneration(generation + 1);
     };
 
+    const gridSize = (size) => {
+        switch (size){
+            case "small":
+                setColumns(20);
+                setRows(10);
+            break;
+            case "medium":
+                setColumns(50);
+                setRows(30);
+            break;
+            case "large":
+                setColumns(60);
+                setRows(50);
+            
+        }
+        clearButton();
+    };
+
 //    useEffect(() => {
+//        random();
 //        startButton();
 //    });
 
@@ -95,6 +115,7 @@ function Home(){
                 stopButton={stopButton}
                 clearButton={clearButton}
                 random={random}
+                gridSize ={gridSize}
             />
             <Grid 
                 gridFull = {gridFull} 

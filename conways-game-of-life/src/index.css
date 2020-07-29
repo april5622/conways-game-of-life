@@ -2,7 +2,7 @@ body {
   background-color: #F0D2D1;
 }
   
-.box {
+.cell {
   display: inline-block;       
   border: 1px solid black;
   width: 15px;
@@ -11,15 +11,15 @@ body {
   margin-bottom: -1px;
   }
 
-.off {
+.dead {
   background-color: #F6EFA6;
 }
 
-.on {
+.alive {
   background-color: #8EB19D;
 }
   
-.box:hover { 
+.cell:hover { 
   background: #66B3BA;
 }
 
@@ -46,13 +46,31 @@ h1, h2, h3, h4 {
   font-family: 'Press Start 2P', cursive;
 }
 
-p {
-  font-family: 'Open Sans', sans-serif;
+h1, h2 {
+  margin-top: 2%;
 }
 
 
-h4 {
-  margin-top: 0px;
+h2, h3 {
+  font-size: medium;
+}
+
+p {
+  color:black;
+  margin: auto;
+  text-align: center;
+  width: 50%;
+  margin-top: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.about {
+  margin-top: 2%;
+}
+
+.rules {
+  margin-top: 2%;
+  margin-bottom: 5%;
 }
 
 .btn {

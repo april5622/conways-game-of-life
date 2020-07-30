@@ -12,7 +12,9 @@ function Buttons(props){
             <ButtonToolbar>
                 <button className="btn btn-default" onClick={props.startButton}>Start</button>
                 <button className="btn btn-default" onClick={props.stopButton}>Stop</button>
-                <button className="btn btn-default" onClick={props.clearButton}>Clear</button> 
+                <button className="btn btn-default" onClick={props.clearButton}>Clear</button>
+                <button className="btn btn-default" onClick={props.slowButton}>Slow</button>
+                <button className="btn btn-default" onClick={props.fastButton}>Fast</button> 
                 <button className="btn btn-default" onClick={props.random}>Random</button>
                 <DropdownButton title="Grid Size" id="size-menu" onSelect={handleSelect}>
                     <Dropdown.Item eventKey="small">Small</Dropdown.Item>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Grid from './grid';
 import Buttons from './buttons'
 import './index.css';
@@ -23,52 +23,21 @@ function Home(){
     const [gridFull, setGridFull] = useState(
         Array(rows).fill().map(() =>  // creating an array as big as rows var and fill that with map
         Array(columns).fill(false) // where an inner array of columns var. false because every grid cell is off
-    ));
-    
+    ));   
 
     const selectCell = (row, column) => {
         let gridCopy = arrayClone(gridFull); // not updating the state, rather a copy of it
         gridCopy[row][column] = !gridCopy[row][column];
         setGridFull(gridCopy);
-    } // selectCell
-
-    const random = () => {
-        const gridCopy = arrayClone(gridFull);
-        for (let i = 0; i < rows; i++){
-            for (let j = 0; j < columns; j++){
-                if (Math.floor(Math.random() * 4) === 1){
-                    gridCopy[i][j] = true;
-                }
-            }
-        }
-        setGridFull(gridCopy);
-    };
-
-    let intervalId = useRef(null)
-
-    const startButton = () => {
-        clearInterval(intervalId);
-        intervalId = setInterval(rule, speed);
-    }; 
-
-    const stopButton = () => {
-        clearInterval(intervalId);
-    };
-
-    const clearButton = () => {
-        const grid = Array(rows).fill().map(() => Array(columns).fill(false));
-        setGridFull(grid);
-        setGeneration(0);
-    };
+    } 
 
     const rule = () => {
         let g = gridFull;
         let g2 = arrayClone(gridFull);
-
         for (let i = 0; i < rows; i++) {
             for (let j = 0; j < columns; j++) {
                let neighbor = 0;
-              directions.forEach(([x, y]) => {
+                directions.forEach(([x, y]) => {
                   const newI = i + x;
                   const newJ = j + y;
                   if(newI >= 0 && newI < rows && newJ >= 0 && newJ < columns){
@@ -83,6 +52,36 @@ function Home(){
         setGeneration(generation + 1);
     };
 
+    const random = () => {
+        const gridCopy = arrayClone(gridFull);
+        for (let i = 0; i < rows; i++){
+            for (let j = 0; j < columns; j++){
+                if (Math.floor(Math.random() * 4) === 1){
+                    gridCopy[i][j] = true;
+                }
+            }
+        }
+        setGridFull(gridCopy);
+    };
+
+    let intervalId = useRef(null);
+
+    const startButton = () => {
+        clearInterval(intervalId);
+        intervalId = setInterval(rule, speed);
+    }; 
+
+    const stopButton = () => {
+        clearInterval(intervalId);
+    };
+
+
+    const clearButton = () => {
+        const grid = Array(rows).fill().map(() => Array(columns).fill(false));
+        setGridFull(grid);
+        setGeneration(0);
+    };
+
     const gridSize = (size) => {
         switch (size){
             case "small":
@@ -93,7 +92,7 @@ function Home(){
                 setColumns(50);
                 setRows(30);
             break;
-            case "large":
+            default:
                 setColumns(60);
                 setRows(50);
             
@@ -101,16 +100,17 @@ function Home(){
         clearButton();
     };
 
-//    useEffect(() => {
-//        random();
-//        startButton();
-//    });
+ 
+    // useEffect(() => {
+    //     random();
+    //     startButton();
+    // },[]);
 
 
     return(
         <div>
             <h1>The Game of Life</h1>
-            <Buttons
+            <Buttons 
                 startButton={startButton}
                 stopButton={stopButton}
                 clearButton={clearButton}
@@ -128,6 +128,13 @@ function Home(){
 
             <div className="about">
                 <h3>About</h3>
+                <p>The Game of Life is a cellular automaton devised by British mathematician John
+                    Horton Coway in 1970. It is a zero-player game, which means it evolution is 
+                    determined by its initial stae, requiring no further input. One interacts with
+                    the Game of Life by creating an initial configuration and observing how it evolves.
+                    It is a Turing complete and can simulate a univeral constructor or any other 
+                    Turing machine.
+                </p>
             </div>
 
             <div className="rules">

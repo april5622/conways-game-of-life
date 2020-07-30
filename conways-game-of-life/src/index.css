@@ -74,7 +74,9 @@ p {
 }
 
 .btn {
+  color: white;
   background-color: #42CAFD;
   border: 1px solid black;
   margin: 5px;
 }
+

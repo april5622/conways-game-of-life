@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Grid from './grid';
 import Buttons from './buttons'
 import './index.css';
@@ -66,17 +66,17 @@ function Home(){
 
     let intervalId = useRef(null);
 
-    const startButton = () => {
+    function startButton(){
         clearInterval(intervalId);
-        intervalId = setInterval(rule, speed);
+        intervalId = setInterval(rule(), speed);
     }; 
 
-    const stopButton = () => {
+    function stopButton(){
         clearInterval(intervalId);
     };
 
 
-    const clearButton = () => {
+    function clearButton(){
         const grid = Array(rows).fill().map(() => Array(columns).fill(false));
         setGridFull(grid);
         setGeneration(0);
@@ -128,7 +128,8 @@ function Home(){
 
             <div className="about">
                 <h3>About</h3>
-                <p>The Game of Life is a cellular automaton devised by British mathematician John
+                <p>
+                    The Game of Life is a cellular automaton devised by British mathematician John
                     Horton Coway in 1970. It is a zero-player game, which means it evolution is 
                     determined by its initial stae, requiring no further input. One interacts with
                     the Game of Life by creating an initial configuration and observing how it evolves.

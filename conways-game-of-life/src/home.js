@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Grid from './grid';
 import Buttons from './buttons'
 import './index.css';
@@ -23,7 +23,12 @@ function Home(){
     const [gridFull, setGridFull] = useState(
         Array(rows).fill().map(() =>  // creating an array as big as rows var and fill that with map
         Array(columns).fill(false) // where an inner array of columns var. false because every grid cell is off
-    ));   
+    ));  
+    
+    useEffect(() => {
+        random();
+        startButton();
+    },[])
 
     const selectCell = (row, column) => {
         let gridCopy = arrayClone(gridFull); // not updating the state, rather a copy of it
@@ -82,6 +87,16 @@ function Home(){
         setGeneration(0);
     };
 
+    function slowButton(){
+        speed(1000);
+        startButton();
+    }
+
+    function fastButton(){
+        speed(100);
+        startButton();
+    }
+
     const gridSize = (size) => {
         switch (size){
             case "small":
@@ -100,11 +115,6 @@ function Home(){
         clearButton();
     };
 
- 
-    // useEffect(() => {
-    //     random();
-    //     startButton();
-    // },[]);
 
 
     return(
@@ -114,6 +124,8 @@ function Home(){
                 startButton={startButton}
                 stopButton={stopButton}
                 clearButton={clearButton}
+                slowButton={slowButton}
+                fastButton={fastButton}
                 random={random}
                 gridSize ={gridSize}
             />

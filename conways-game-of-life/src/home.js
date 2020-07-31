@@ -114,6 +114,10 @@ function Home(){
         setGeneration(1)
     },[])
 
+    useEffect(() => {
+        //startButton();
+    })
+
     return(
         <div>
             <h1>The Game of Life</h1>

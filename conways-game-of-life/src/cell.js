@@ -6,8 +6,8 @@ function Cell(props){
 // then we pass pass rows & columns 
 // since theres no way to pass anything to stop props if
 // its inside the render method
-    const selectCell = () => {
-        props.selectCell(props.rows, props.columns) 
+    let selectCell = () => {
+        props.selectCell(props.row, props.columns) 
     }                                              
     return (
         <div 

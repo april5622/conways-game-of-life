@@ -71,7 +71,7 @@ export default class home extends Component {
     }
 
     clearButton = () => {
-		var grid = Array(this.rows).fill().map(() => Array(this.cols).fill(false));
+		var grid = Array(this.rows).fill().map(() => Array(this.columns).fill(false));
 		this.setState({
 			gridFull: grid,
 			generation: 0
